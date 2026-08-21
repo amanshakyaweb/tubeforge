@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thumbnail Tools — TubeForge</title>
+<meta name="description" content="Download any YouTube video's thumbnail in HD, or preview your thumbnail in a real feed layout before uploading.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="ambient"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+      Tube<span>Forge</span>
+    </a>
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="content-planning.html">Content Planning</a>
+      <a href="thumbnail-tools.html" class="active">Thumbnail Tools</a>
+      <a href="growth-tools.html">Growth &amp; Money</a>
+    </nav>
+    <button class="burger" aria-label="Toggle menu">☰</button>
+  </div>
+</header>
+
+<section class="page-hero wrap">
+  <svg class="float3d" style="top:20px;left:8%;width:40px;" viewBox="0 0 24 24" fill="none" stroke="#ff4d9d" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+  <svg class="float3d" style="top:50px;right:6%;width:36px;animation-delay:2s;" viewBox="0 0 24 24" fill="none" stroke="#ff1744" stroke-width="1.6"><circle cx="12" cy="12" r="9"/></svg>
+  <div class="eyebrow" style="justify-content:center;"><span class="dot"></span> Thumbnail Tools</div>
+  <h1>The image that decides the click.</h1>
+  <p>Grab any thumbnail in HD, or test yours in a real feed layout before it goes live.</p>
+</section>
+
+<section class="search-zone wrap">
+  <div class="search-box">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="tt-search" type="text" placeholder="Search thumbnail tools…" autocomplete="off">
+  </div>
+  <p class="search-count mono" id="tt-search-count">2 tools available</p>
+</section>
+
+<main class="wrap">
+<div class="grid" id="tt-grid" style="grid-template-columns:1fr;">
+
+  <!-- THUMBNAIL DOWNLOADER -->
+  <div class="card tool-card wide reveal" id="thumb-dl" data-keywords="thumbnail downloader hd image">
+    <div class="card-thumb" style="--tc1:#5c0f0f;--tc2:#1a0a0a; aspect-ratio:auto; padding:22px 22px 0;"><span class="tag" style="position:static;">Thumbnail · HD</span></div>
+    <div class="card-body" style="padding-bottom:0;"><h3>Thumbnail Downloader</h3><p>Paste a YouTube video link or ID — get every available resolution instantly.</p></div>
+    <div class="tool-panel">
+      <div class="field"><label for="dl-input">YouTube video URL or ID</label><input type="text" id="dl-input" placeholder="https://www.youtube.com/watch?v=..."></div>
+      <button class="btn" onclick="fetchThumbs()">Get Thumbnails</button>
+      <p class="hint" id="dl-error" style="color:#ff5c7a; display:none;">Couldn't find a video ID in that link — double-check the URL.</p>
+      <div id="dl-results"></div>
+      <p class="hint">Right-click any image → "Save image as…" to download. Not every video has a maxres version.</p>
+    </div>
+  </div>
+
+  <!-- THUMBNAIL PREVIEW -->
+  <div class="card tool-card wide reveal" id="thumb-preview" data-keywords="thumbnail preview feed test">
+    <div class="card-thumb" style="--tc1:#0f2a5c;--tc2:#0a0e1a; aspect-ratio:auto; padding:22px 22px 0;"><span class="tag" style="position:static;">Thumbnail · Test</span></div>
+    <div class="card-body" style="padding-bottom:0;"><h3>Thumbnail Preview</h3><p>Upload your thumbnail image and see it the way viewers actually will.</p></div>
+    <div class="tool-panel">
+      <div class="row2">
+        <div class="field"><label for="pv-file">Thumbnail image</label><input type="file" id="pv-file" accept="image/*" onchange="loadPreview(event)"></div>
+        <div class="field"><label for="pv-title">Video title</label><input type="text" id="pv-title" placeholder="Your video title" oninput="updatePreview()"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="pv-channel">Channel name</label><input type="text" id="pv-channel" placeholder="Your channel" oninput="updatePreview()"></div>
+        <div class="field"><label for="pv-views">Views + age</label><input type="text" id="pv-views" placeholder="e.g. 12K views · 2 days ago" oninput="updatePreview()"></div>
+      </div>
+
+      <div class="feed-mock">
+        <div class="feed-item">
+          <div class="thumb" id="pv-thumb">No image yet</div>
+          <div class="meta">
+            <b id="pv-title-out">Your video title</b>
+            <span id="pv-channel-out">Your channel</span><br>
+            <span id="pv-views-out">0 views</span>
+          </div>
+        </div>
+      </div>
+      <p class="hint">This mimics the YouTube home-feed card size (168px wide) so you can judge readability at a glance.</p>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap foot-bottom">
+    <span>© 2026 TubeForge. Not affiliated with YouTube or Google.</span>
+    <a href="index.html">← Back to home</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+initSiteSearch('tt-search', '#tt-grid .card', 'tt-search-count');
+
+function extractVideoId(raw){
+  const s = raw.trim();
+  if (/^[\w-]{11}$/.test(s)) return s;
+  const patterns = [
+    /(?:v=|\/videos\/|embed\/|youtu\.be\/|\/shorts\/|\/live\/)([\w-]{11})/,
+    /^([\w-]{11})$/
+  ];
+  for (const p of patterns){ const m = s.match(p); if (m) return m[1]; }
+  return null;
+}
+
+function fetchThumbs(){
+  const val = document.getElementById('dl-input').value;
+  const id = extractVideoId(val);
+  const err = document.getElementById('dl-error');
+  const box = document.getElementById('dl-results');
+  if (!id){ err.style.display='block'; box.innerHTML=''; return; }
+  err.style.display='none';
+  const sizes = [
+    ['maxresdefault','1280×720'],
+    ['sddefault','640×480'],
+    ['hqdefault','480×360'],
+    ['mqdefault','320×180'],
+    ['default','120×90']
+  ];
+  box.innerHTML = `<div class="thumb-grid" style="margin-top:14px;">` + sizes.map(([file,res]) => `
+    <a href="https://img.youtube.com/vi/${id}/${file}.jpg" target="_blank" rel="noopener">
+      <img src="https://img.youtube.com/vi/${id}/${file}.jpg" alt="${res} thumbnail" loading="lazy">
+      <span>${res}</span>
+    </a>`).join('') + `</div>`;
+}
+
+function loadPreview(e){
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    document.getElementById('pv-thumb').innerHTML = `<img src="${ev.target.result}" alt="Thumbnail preview">`;
+  };
+  reader.readAsDataURL(file);
+}
+
+function updatePreview(){
+  document.getElementById('pv-title-out').textContent = document.getElementById('pv-title').value || 'Your video title';
+  document.getElementById('pv-channel-out').textContent = document.getElementById('pv-channel').value || 'Your channel';
+  document.getElementById('pv-views-out').textContent = document.getElementById('pv-views').value || '0 views';
+}
+</script>
+</body>
+</html>

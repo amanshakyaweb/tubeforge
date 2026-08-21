@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Planning Tools — TubeForge</title>
+<meta name="description" content="Generate SEO-friendly YouTube titles, tags, descriptions, hashtags and script outlines — free, instant, no signup.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="ambient"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+      Tube<span>Forge</span>
+    </a>
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="content-planning.html" class="active">Content Planning</a>
+      <a href="thumbnail-tools.html">Thumbnail Tools</a>
+      <a href="growth-tools.html">Growth &amp; Money</a>
+    </nav>
+    <button class="burger" aria-label="Toggle menu">☰</button>
+  </div>
+</header>
+
+<section class="page-hero wrap">
+  <svg class="float3d" style="top:20px;left:6%;width:38px;" viewBox="0 0 24 24" fill="none" stroke="#ff4d9d" stroke-width="1.6"><path d="M4 6h16M4 12h10M4 18h7"/></svg>
+  <svg class="float3d" style="top:60px;right:8%;width:44px;animation-delay:1.5s;" viewBox="0 0 24 24" fill="none" stroke="#ff1744" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+  <div class="eyebrow" style="justify-content:center;"><span class="dot"></span> Content Planning</div>
+  <h1>Plan the video before you touch record.</h1>
+  <p>Type your topic once — get titles, tags, a description and hashtags built around it, all SEO-friendly.</p>
+</section>
+
+<section class="search-zone wrap">
+  <div class="search-box">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="cp-search" type="text" placeholder="Search content-planning tools… try “hashtag”" autocomplete="off">
+  </div>
+  <p class="search-count mono" id="cp-search-count">6 tools available</p>
+</section>
+
+<main class="wrap">
+<div class="grid" id="cp-grid">
+
+  <!-- TITLE GENERATOR -->
+  <div class="card tool-card wide reveal" id="title-gen" data-keywords="title generator seo catchy heading">
+    <div class="card-thumb" style="--tc1:#5c0f22;--tc2:#1a0a10; aspect-ratio:auto; padding:22px 22px 0;">
+      <span class="tag" style="position:static;">Content · Generator</span>
+    </div>
+    <div class="card-body" style="padding-bottom:0;">
+      <h3>Title Generator</h3>
+      <p>Enter a topic — get click-worthy, search-friendly title options with live length checks.</p>
+    </div>
+    <div class="tool-panel">
+      <div class="row2">
+        <div class="field">
+          <label for="title-input">Video topic</label>
+          <input type="text" id="title-input" placeholder="e.g. editing vlogs in CapCut">
+        </div>
+        <div class="field">
+          <label for="title-style">Style</label>
+          <select id="title-style">
+            <option value="all">All styles</option>
+            <option value="howto">How-to</option>
+            <option value="list">Listicle</option>
+            <option value="story">Story / Challenge</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="generateTitles()">Generate Titles</button>
+      <div class="output" id="title-output"></div>
+      <p class="hint">Green = under 60 characters, ideal for search results. Red = may get cut off.</p>
+    </div>
+  </div>
+
+  <!-- TAGS GENERATOR -->
+  <div class="card tool-card reveal" id="tags-gen" data-keywords="tags generator keywords video">
+    <div class="card-thumb" style="--tc1:#4a1050;--tc2:#150a1a; aspect-ratio:auto; padding:22px 22px 0;"><span class="tag" style="position:static;">Content · Generator</span></div>
+    <div class="card-body" style="padding-bottom:0;"><h3>Tags Generator</h3><p>A ready-to-paste tag list built from your topic.</p></div>
+    <div class="tool-panel">
+      <div class="field"><label for="tags-input">Video topic</label><input type="text" id="tags-input" placeholder="e.g. iPhone photography"></div>
+      <button class="btn" onclick="generateTags()">Generate Tags</button>
+      <div class="output" id="tags-output"></div>
+    </div>
+  </div>
+
+  <!-- HASHTAG GENERATOR -->
+  <div class="card tool-card reveal" id="hashtag-gen" data-keywords="hashtag generator trending">
+    <div class="card-thumb" style="--tc1:#5c3a0f;--tc2:#1a130a; aspect-ratio:auto; padding:22px 22px 0;"><span class="tag" style="position:static;">Content · Generator</span></div>
+    <div class="card-body" style="padding-bottom:0;"><h3>Hashtag Generator</h3><p>Hashtags for your description and pinned comment.</p></div>
+    <div class="tool-panel">
+      <div class="field"><label for="hash-input">Video topic</label><input type="text" id="hash-input" placeholder="e.g. home workout"></div>
+      <button class="btn" onclick="generateHashtags()">Generate Hashtags</button>
+      <div class="output" id="hash-output"></div>
+    </div>
+  </div>
+
+  <!-- DESCRIPTION GENERATOR -->
+  <div class="card tool-card wide reveal" id="desc-gen" data-keywords="description generator template video">
+    <div class="card-thumb" style="--tc1:#0f3a56;--tc2:#0a141a; aspect-ratio:auto; padding:22px 22px 0;"><span class="tag" style="position:static;">Content · Generator</span></div>
+    <div class="card-body" style="padding-bottom:0;"><h3>Description Generator</h3><p>A structured, keyword-rich description template, filled in for you.</p></div>
+    <div class="tool-panel">
+      <div class="row2">
+        <div class="field"><label for="desc-topic">Video topic</label><input type="text" id="desc-topic" placeholder="e.g. budget travel in Goa"></div>
+        <div class="field"><label for="desc-channel">Channel name</label><input type="text" id="desc-channel" placeholder="e.g. WanderWithRaj"></div>
+      </div>
+      <div class="field"><label for="desc-link">CTA link (optional)</label><input type="text" id="desc-link" placeholder="e.g. https://instagram.com/yourhandle"></div>
+      <button class="btn" onclick="generateDescription()">Generate Description</button>
+      <div class="output" id="desc-output" style="white-space:pre-wrap; font-family:'JetBrains Mono',monospace; font-size:13.5px;"></div>
+    </div>
+  </div>
+
+  <!-- SCRIPT OUTLINE GENERATOR -->
+  <div class="card tool-card reveal" id="script-gen" data-keywords="script outline generator structure video">
+    <div class="card-thumb" style="--tc1:#0f5c3f;--tc2:#0a1a14; aspect-ratio:auto; padding:22px 22px 0;"><span class="tag" style="position:static;">Content · Generator</span></div>
+    <div class="card-body" style="padding-bottom:0;"><h3>Script Outline Generator</h3><p>A hook → body → CTA skeleton for your video.</p></div>
+    <div class="tool-panel">
+      <div class="field"><label for="script-input">Video topic</label><input type="text" id="script-input" placeholder="e.g. beginner guitar chords"></div>
+      <button class="btn" onclick="generateScript()">Generate Outline</button>
+      <div class="output" id="script-output" style="white-space:pre-wrap; font-family:'JetBrains Mono',monospace; font-size:13.5px;"></div>
+    </div>
+  </div>
+
+  <!-- SHORTS IDEA GENERATOR -->
+  <div class="card tool-card reveal" id="shorts-gen" data-keywords="shorts ideas generator viral">
+    <div class="card-thumb" style="--tc1:#5c0f3a;--tc2:#1a0a13; aspect-ratio:auto; padding:22px 22px 0;"><span class="tag" style="position:static;">Content · Generator</span></div>
+    <div class="card-body" style="padding-bottom:0;"><h3>Shorts Idea Generator</h3><p>Quick vertical-video concepts from one keyword.</p></div>
+    <div class="tool-panel">
+      <div class="field"><label for="shorts-input">Topic / niche</label><input type="text" id="shorts-input" placeholder="e.g. personal finance"></div>
+      <button class="btn" onclick="generateShorts()">Generate Ideas</button>
+      <div class="output" id="shorts-output"></div>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap foot-bottom">
+    <span>© 2026 TubeForge. Not affiliated with YouTube or Google.</span>
+    <a href="index.html">← Back to home</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+initSiteSearch('cp-search', '#cp-grid .card', 'cp-search-count');
+
+function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+function getTopic(id, fallback){ const v = document.getElementById(id).value.trim(); return v || fallback; }
+
+function showOutput(id, html){
+  const el = document.getElementById(id);
+  el.innerHTML = html;
+  el.classList.add('show');
+}
+
+// Fisher-Yates shuffle — new order every single call, even for the same array
+function shuffle(arr){
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function pick(arr, n){ return shuffle(arr).slice(0, n); }
+function pickOne(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+
+function generateTitles(){
+  const topic = getTopic('title-input','video editing');
+  const t = cap(topic);
+  const style = document.getElementById('title-style').value;
+  const banks = {
+    howto: [
+      `How to ${topic} in 2026 (Step-by-Step)`,
+      `${t}: A Beginner's Guide That Actually Works`,
+      `How I ${topic} — My Exact Process`,
+      `${t} Explained in 5 Minutes`,
+      `The Fastest Way to Learn ${topic}`,
+      `${t} 101: What I'd Tell My Younger Self`,
+      `A Simple System for ${topic} That Actually Sticks`,
+      `${t} Made Easy (No Experience Needed)`
+    ],
+    list: [
+      `Top 10 ${topic} Tips Nobody Tells You`,
+      `7 ${topic} Mistakes You're Probably Making`,
+      `${t}: 5 Things I Wish I Knew Sooner`,
+      `Best ${topic} Tools in 2026, Ranked`,
+      `9 ${topic} Hacks That Actually Work`,
+      `${t}: 3 Rules I Never Break`,
+      `The Only ${topic} Checklist You Need`,
+      `Ranking Every ${topic} Method I've Tried`
+    ],
+    story: [
+      `I Tried ${topic} for 30 Days — Here's What Happened`,
+      `The Truth About ${topic} Nobody Talks About`,
+      `Why ${topic} Is Harder Than It Looks`,
+      `${t} Changed My Channel. Here's How`,
+      `What Nobody Tells You Before You Start ${t}`,
+      `I Was Wrong About ${topic}. Here's What I Learned`,
+      `${t}: My Honest, Unfiltered Experience`,
+      `The Video I Wish Someone Made Before I Started ${t}`
+    ]
+  };
+  const pool = style === 'all' ? [...banks.howto, ...banks.list, ...banks.story] : banks[style];
+  const list = pick(pool, Math.min(6, pool.length));
+  const rows = list.map(title => {
+    const ok = title.length <= 60;
+    return `<div class="item"><span>${title}<br><span class="hint mono" style="color:${ok? '#4ade80':'#ff5c7a'}">${title.length} chars</span></span><span class="copy" onclick="copyText('${title.replace(/'/g,"\\'")}', this)">Copy</span></div>`;
+  }).join('');
+  showOutput('title-output', rows);
+}
+
+function generateTags(){
+  const topic = getTopic('tags-input','photography');
+  const mods = ['tutorial','tips','2026','for beginners','guide','explained','review','hacks','mistakes','vs alternatives','how to','step by step','crash course','walkthrough','secrets','breakdown','masterclass','for beginners 2026'];
+  const chosen = pick(mods, 10).map(m => `${topic} ${m}`);
+  const tags = [topic, ...chosen, 'youtube', topic.split(' ')[0]];
+  const unique = [...new Set(tags.map(t=>t.trim()))];
+  const joined = unique.join(', ');
+  showOutput('tags-output', `
+    <p style="margin-bottom:10px;">${unique.map(t=>`<span class="chip">${t}</span>`).join('')}</p>
+    <div class="item"><span class="hint mono">${joined.length} / 500 characters used</span><span class="copy" onclick="copyText('${joined.replace(/'/g,"\\'")}', this)">Copy all</span></div>
+  `);
+}
+
+function generateHashtags(){
+  const topic = getTopic('hash-input','fitness');
+  const words = topic.split(/\s+/).filter(Boolean);
+  const camel = words.map((w,i)=> i===0 ? w.toLowerCase() : cap(w)).join('');
+  const pas = words.map(cap).join('');
+  const pool = [
+    `#${camel}`, `#${pas}Tutorial`, `#${pas}2026`, `#${pas}Tips`,
+    `#${pas}ForBeginners`, `#HowTo${pas}`, `#Learn${pas}`, `#${pas}Explained`,
+    `#${pas}Guide`, `#${pas}Hacks`, `#${pas}Basics`, `#${pas}Journey`,
+    '#YouTube', '#Trending', '#Shorts', '#Viral'
+  ];
+  const tags = [`#${camel}`, ...pick(pool.slice(1), 8)]; // always keep the core tag, randomize the rest
+  const unique = [...new Set(tags)];
+  const joined = unique.join(' ');
+  showOutput('hash-output', `
+    <p style="margin-bottom:10px;">${unique.map(t=>`<span class="chip">${t}</span>`).join('')}</p>
+    <div class="item"><span class="hint mono">Use 3–5 in description for best reach</span><span class="copy" onclick="copyText('${joined.replace(/'/g,"\\'")}', this)">Copy all</span></div>
+  `);
+}
+
+function generateDescription(){
+  const topic = getTopic('desc-topic','this topic');
+  const channel = getTopic('desc-channel','this channel');
+  const link = document.getElementById('desc-link').value.trim();
+  const t = cap(topic);
+
+  const hooks = [
+    `${t} — everything you need in one video. If you've been struggling with ${topic}, this walkthrough covers the exact steps that worked for me.`,
+    `This is the ${topic} video I wish existed when I was starting out — no fluff, just what actually works.`,
+    `Struggling with ${topic}? By the end of this video you'll have a clear, repeatable process for it.`,
+    `${t}, explained the simple way. No jargon, no filler — just what you need to get results.`
+  ];
+  const closers = [
+    `If this helped, drop a comment with your biggest takeaway — I read every one.`,
+    `Got questions about ${topic}? Leave them below and I'll reply.`,
+    `Let me know in the comments which tip you're trying first.`,
+    `If you found this useful, a comment helps this video reach more people trying to learn ${topic}.`
+  ];
+  const subLines = [
+    `🔔 Subscribe to ${channel} for more videos on ${topic} and related topics every week.`,
+    `🔔 New to the channel? Subscribe to ${channel} — new ${topic} videos every week.`,
+    `🔔 Hit subscribe on ${channel} so you don't miss the next ${topic} video.`
+  ];
+
+  const desc =
+`${pickOne(hooks)}
+
+⏱ TIMESTAMPS
+00:00 Intro
+00:30 Why ${topic} matters
+02:00 Step-by-step walkthrough
+08:00 Common mistakes to avoid
+10:30 Recap & next steps
+
+${pickOne(subLines)}
+${link ? `📌 Follow / more here: ${link}` : ''}
+
+${pickOne(closers)}
+
+#${topic.replace(/\s+/g,'')} #${topic.split(' ')[0]}Tips #YouTube`;
+  showOutput('desc-output', desc);
+}
+
+function generateScript(){
+  const topic = getTopic('script-input','your topic');
+  const hooks = [
+    `One striking claim or question about ${topic} that stops the scroll.`,
+    `Show the end result of ${topic} first, then promise to explain how you got there.`,
+    `Call out a common myth about ${topic} and say you're about to bust it.`,
+    `Ask the exact question your viewer typed into Google before finding this video.`
+  ];
+  const p1 = [
+    `The most common mistake people make with ${topic}.`,
+    `The one thing almost everyone gets wrong when starting ${topic}.`,
+    `Why most advice about ${topic} online doesn't actually work.`
+  ];
+  const p2 = [
+    `Your actual method / process for ${topic}, step by step.`,
+    `Walk through your real workflow for ${topic}, showing your screen or hands where possible.`,
+    `Break ${topic} into 3 simple steps anyone can follow.`
+  ];
+  const p3 = [
+    `One advanced tip most creators skip when covering ${topic}.`,
+    `A shortcut or tool that makes ${topic} noticeably easier.`,
+    `What you'd do differently now, after more experience with ${topic}.`
+  ];
+  const ctas = [
+    `Ask a specific question tied to ${topic} to drive comments, then point to subscribe.`,
+    `Tell viewers to try one step today and comment their result.`,
+    `Point to a related video on ${topic} they should watch next.`
+  ];
+  const outline =
+`HOOK (0:00–0:15)
+${pickOne(hooks)}
+
+INTRO (0:15–0:45)
+Who you are, why you know ${topic}, and what they'll get by the end.
+
+MAIN POINT 1
+${pickOne(p1)}
+
+MAIN POINT 2
+${pickOne(p2)}
+
+MAIN POINT 3
+${pickOne(p3)}
+
+RECAP
+Quick 3-line summary of what was covered.
+
+CALL TO ACTION
+${pickOne(ctas)}`;
+  showOutput('script-output', outline);
+}
+
+function generateShorts(){
+  const topic = getTopic('shorts-input','productivity');
+  const t = cap(topic);
+  const pool = [
+    `3 ${topic} mistakes beginners make`,
+    `${t} in 15 seconds`,
+    `POV: you just learned ${topic}`,
+    `Rating ${topic} tips 1 to 10`,
+    `${t}: before vs after`,
+    `Things I wish I knew about ${topic}`,
+    `${t} in one breath`,
+    `The ${topic} tip that changed everything`,
+    `Stop doing this if you're into ${topic}`,
+    `${t}: expectation vs reality`,
+    `1 ${topic} tip, 15 seconds, no talking`,
+    `Reacting to bad ${topic} advice`
+  ];
+  const ideas = pick(pool, 6);
+  showOutput('shorts-output', ideas.map(i => `<div class="item"><span>${i}</span><span class="copy" onclick="copyText('${i.replace(/'/g,"\\'")}', this)">Copy</span></div>`).join(''));
+}
+</script>
+</body>
+</html>

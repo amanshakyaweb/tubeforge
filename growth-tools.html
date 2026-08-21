@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growth &amp; Money Tools — TubeForge</title>
+<meta name="description" content="Estimate YouTube earnings, calculate CPM and RPM, find the best time to upload, and build a clean channel link — free and instant.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="ambient"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+      Tube<span>Forge</span>
+    </a>
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="content-planning.html">Content Planning</a>
+      <a href="thumbnail-tools.html">Thumbnail Tools</a>
+      <a href="growth-tools.html" class="active">Growth &amp; Money</a>
+    </nav>
+    <button class="burger" aria-label="Toggle menu">☰</button>
+  </div>
+</header>
+
+<section class="page-hero wrap">
+  <svg class="float3d" style="top:20px;left:7%;width:40px;" viewBox="0 0 24 24" fill="none" stroke="#ff4d9d" stroke-width="1.6"><path d="M4 19V9M11 19V4M18 19v-7"/></svg>
+  <svg class="float3d" style="top:55px;right:7%;width:38px;animation-delay:1s;" viewBox="0 0 24 24" fill="none" stroke="#ff1744" stroke-width="1.6"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+  <div class="eyebrow" style="justify-content:center;"><span class="dot"></span> Growth &amp; Money</div>
+  <h1>Know the numbers behind the channel.</h1>
+  <p>Rough, honest estimates — not guarantees — so you know what to expect.</p>
+</section>
+
+<section class="search-zone wrap">
+  <div class="search-box">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="gt-search" type="text" placeholder="Search growth tools…" autocomplete="off">
+  </div>
+  <p class="search-count mono" id="gt-search-count">4 tools available</p>
+</section>
+
+<main class="wrap">
+<div class="grid" id="gt-grid">
+
+  <!-- MONEY CALCULATOR -->
+  <div class="card tool-card wide reveal" id="money-calc" data-keywords="money calculator earnings estimator revenue">
+    <div class="card-thumb" style="--tc1:#12591f;--tc2:#0a1a0d; aspect-ratio:auto; padding:22px 22px 0;"><span class="tag" style="position:static;">Growth · Calculator</span></div>
+    <div class="card-body" style="padding-bottom:0;"><h3>YouTube Money Calculator</h3><p>A rough estimate of monthly ad earnings based on views and niche.</p></div>
+    <div class="tool-panel">
+      <div class="row2">
+        <div class="field"><label for="mc-views">Monthly views</label><input type="number" id="mc-views" placeholder="e.g. 100000" min="0"></div>
+        <div class="field"><label for="mc-niche">Niche</label>
+          <select id="mc-niche">
+            <option value="1,3">General / Vlog ($1–3 CPM)</option>
+            <option value="8,20">Finance / Business ($8–20 CPM)</option>
+            <option value="3,8">Tech ($3–8 CPM)</option>
+            <option value="1,4">Gaming ($1–4 CPM)</option>
+            <option value="2,5">Lifestyle / Beauty ($2–5 CPM)</option>
+            <option value="2,6">Education ($2–6 CPM)</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="calcMoney()">Estimate Earnings</button>
+      <div class="output" id="mc-output"></div>
+      <p class="hint">Based on typical CPM ranges, assuming ~40% of views are monetized. Actual AdSense payouts vary by audience country, season and ad blockers.</p>
+    </div>
+  </div>
+
+  <!-- CPM / RPM CALCULATOR -->
+  <div class="card tool-card reveal" id="cpm-calc" data-keywords="cpm rpm calculator ad revenue">
+    <div class="card-thumb" style="--tc1:#5c4a0f;--tc2:#1a150a; aspect-ratio:auto; padding:22px 22px 0;"><span class="tag" style="position:static;">Growth · Calculator</span></div>
+    <div class="card-body" style="padding-bottom:0;"><h3>CPM / RPM Calculator</h3><p>Work out your real rates from actual revenue and views.</p></div>
+    <div class="tool-panel">
+      <div class="field"><label for="cpm-rev">Total revenue ($)</label><input type="number" id="cpm-rev" placeholder="e.g. 240" min="0"></div>
+      <div class="field"><label for="cpm-views">Total views</label><input type="number" id="cpm-views" placeholder="e.g. 120000" min="0"></div>
+      <button class="btn" onclick="calcCpm()">Calculate</button>
+      <div class="output" id="cpm-output"></div>
+    </div>
+  </div>
+
+  <!-- BEST TIME TO UPLOAD -->
+  <div class="card tool-card reveal" id="best-time" data-keywords="best time to upload schedule audience">
+    <div class="card-thumb" style="--tc1:#0f5c56;--tc2:#0a1a18; aspect-ratio:auto; padding:22px 22px 0;"><span class="tag" style="position:static;">Growth · Guide</span></div>
+    <div class="card-body" style="padding-bottom:0;"><h3>Best Time to Upload</h3><p>A starting point — always confirm with your own Analytics later.</p></div>
+    <div class="tool-panel">
+      <div class="field"><label for="bt-region">Audience region</label>
+        <select id="bt-region" onchange="showBestTime()">
+          <option value="in">India</option>
+          <option value="us">United States</option>
+          <option value="uk">United Kingdom / Europe</option>
+          <option value="global">Global / Mixed</option>
+        </select>
+      </div>
+      <div class="output show" id="bt-output"></div>
+    </div>
+  </div>
+
+  <!-- CHANNEL LINK BUILDER -->
+  <div class="card tool-card reveal" id="handle-tool" data-keywords="channel url handle formatter id">
+    <div class="card-thumb" style="--tc1:#3a0f5c;--tc2:#130a1a; aspect-ratio:auto; padding:22px 22px 0;"><span class="tag" style="position:static;">Growth · Tool</span></div>
+    <div class="card-body" style="padding-bottom:0;"><h3>Channel Link Builder</h3><p>Turn your handle into a clean, shareable link.</p></div>
+    <div class="tool-panel">
+      <div class="field"><label for="handle-input">Your @handle</label><input type="text" id="handle-input" placeholder="e.g. @yourname or yourname"></div>
+      <button class="btn" onclick="buildLink()">Build Link</button>
+      <div class="output" id="handle-output"></div>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap foot-bottom">
+    <span>© 2026 TubeForge. Not affiliated with YouTube or Google.</span>
+    <a href="index.html">← Back to home</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+initSiteSearch('gt-search', '#gt-grid .card', 'gt-search-count');
+
+function calcMoney(){
+  const views = parseFloat(document.getElementById('mc-views').value) || 0;
+  const [lo,hi] = document.getElementById('mc-niche').value.split(',').map(Number);
+  const monetized = views * 0.4;
+  const low = (monetized/1000)*lo;
+  const high = (monetized/1000)*hi;
+  const fmt = n => '$' + n.toLocaleString(undefined,{maximumFractionDigits:0});
+  const el = document.getElementById('mc-output');
+  el.innerHTML = `
+    <p class="result-big">${fmt(low)} – ${fmt(high)} <span class="hint" style="font-family:'Inter';font-weight:400;">/ month (estimate)</span></p>
+    <p class="hint" style="margin-top:8px;">Yearly range: ${fmt(low*12)} – ${fmt(high*12)}</p>`;
+  el.classList.add('show');
+}
+
+function calcCpm(){
+  const rev = parseFloat(document.getElementById('cpm-rev').value) || 0;
+  const views = parseFloat(document.getElementById('cpm-views').value) || 1;
+  const cpm = (rev/views)*1000;
+  const el = document.getElementById('cpm-output');
+  el.innerHTML = `<p class="result-big">$${cpm.toFixed(2)} <span class="hint" style="font-family:'Inter';font-weight:400;">RPM</span></p>
+    <p class="hint" style="margin-top:8px;">This is revenue per 1,000 views (RPM) — your take-home rate after YouTube's cut, based on the numbers you entered.</p>`;
+  el.classList.add('show');
+}
+
+function showBestTime(){
+  const data = {
+    in: ['Tue–Thu, 7:00–9:00 PM IST', 'Sat–Sun, 11:00 AM–1:00 PM IST'],
+    us: ['Tue–Thu, 3:00–5:00 PM ET', 'Sat, 9:00–11:00 AM ET'],
+    uk: ['Wed–Fri, 6:00–8:00 PM GMT/CET', 'Sun, 10:00 AM–12:00 PM'],
+    global: ['Thu–Fri, 2:00–4:00 PM UTC (catches multiple time zones)', 'Sat, 12:00–2:00 PM UTC']
+  };
+  const region = document.getElementById('bt-region').value;
+  const [a,b] = data[region];
+  document.getElementById('bt-output').innerHTML = `
+    <div class="item"><span>🕐 Weekday window</span><span class="mono">${a}</span></div>
+    <div class="item"><span>🕐 Weekend window</span><span class="mono">${b}</span></div>
+    <p class="hint" style="margin-top:8px;">General guidance — check YouTube Studio → Audience for when *your* viewers are actually online.</p>`;
+}
+showBestTime();
+
+function buildLink(){
+  let h = document.getElementById('handle-input').value.trim().replace(/^@/,'');
+  if (!h){ h = 'yourname'; }
+  const url = `https://youtube.com/@${h}`;
+  const el = document.getElementById('handle-output');
+  el.innerHTML = `<div class="item"><span class="mono">${url}</span><span class="copy" onclick="copyText('${url}', this)">Copy</span></div>`;
+  el.classList.add('show');
+}
+</script>
+</body>
+</html>
